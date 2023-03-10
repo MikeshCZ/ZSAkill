@@ -1,5 +1,6 @@
-#include "cMain.h"
+﻿#include "cMain.h"
 #include "cLog.h"
+#include "cProcessKill.h"
 
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 420), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX))
 {	
@@ -26,6 +27,10 @@ cMain::~cMain()
 void cMain::OnButtonClick(wxCommandEvent& event)
 {
 	cLog looger(this);
+	std::wstring processName = L"Notepad.exe";
+	
+	cProcessKill killer(processName);
+
 	int btnId = event.GetId();
 	
 	// akce podle tlacitka
@@ -33,6 +38,14 @@ void cMain::OnButtonClick(wxCommandEvent& event)
 	{
 	case 10001:
 		looger.AddLog(("ZSA killer started"));
+		if (killer.killProcess()) {
+			// proces byl uspesne ukoncen
+			looger.AddLog(("Killed successfully"));
+		}
+		else {
+			// proces nebyl nalezen nebo nelze ukoncit
+			looger.AddLog(("Proccess not found"));
+		}
 		break;
 	case 10002:
 		looger.AddLog(("ZSA killer stoped"));

@@ -138,11 +138,13 @@
     <ClInclude Include="cApp.h" />
     <ClInclude Include="cLog.h" />
     <ClInclude Include="cMain.h" />
+    <ClInclude Include="cProcessKill.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="cMain.cpp" />
+    <ClCompile Include="cProcessKill.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

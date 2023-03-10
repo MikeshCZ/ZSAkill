@@ -24,6 +24,9 @@
     <ClInclude Include="cLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cProcessKill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cApp.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cProcessKill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

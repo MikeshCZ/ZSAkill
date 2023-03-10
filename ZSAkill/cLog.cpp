@@ -4,7 +4,7 @@
 #include <ctime>
 #include <iomanip>
 
-
+using namespace std;
 
 cLog::cLog(cMain* mainObj)
 {
