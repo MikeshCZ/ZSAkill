@@ -2,8 +2,7 @@
 
 #include "cMain.h"
 
-class cProcessKill
-{
+class cProcessKill {
 public:
 	cProcessKill(const std::wstring& processName);
 

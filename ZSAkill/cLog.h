@@ -1,8 +1,7 @@
 #pragma once
 #include "cMain.h"
 
-class cLog
-{
+class cLog {
 public:
 	cLog(cMain* mainObj);
 	~cLog();

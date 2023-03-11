@@ -6,17 +6,13 @@
 
 using namespace std;
 
-cLog::cLog(cMain* mainObj)
-{
+cLog::cLog(cMain* mainObj) {
 	m_listBox = mainObj->list_log;
 }
 
-cLog::~cLog()
-{
-}
+cLog::~cLog() {}
 
-void cLog::AddLog(string message, int level)
-{
+void cLog::AddLog(string message, int level) {
 	// Vycteni casu
 	auto now = chrono::system_clock::now();
 	time_t time_now = chrono::system_clock::to_time_t(now);

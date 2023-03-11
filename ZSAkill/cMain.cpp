@@ -2,8 +2,7 @@
 #include "cLog.h"
 #include "cProcessKill.h"
 
-cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 420), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX))
-{	
+cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 420), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) {	
 	// Nastaveni vlastnosti okna
 	Centre();
 	SetBackgroundColour(wxColour(255, 255, 255));
@@ -19,37 +18,30 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxS
 	button_stop->Bind(wxEVT_BUTTON, &cMain::OnButtonClick, this);
 }
 
-cMain::~cMain()
-{
+cMain::~cMain() {}
 
-}
-
-void cMain::OnButtonClick(wxCommandEvent& event)
-{
+void cMain::OnButtonClick(wxCommandEvent& event) {
+	int btnId = event.GetId();
 	cLog looger(this);
 	std::wstring processName = L"Notepad.exe";
-	
 	cProcessKill killer(processName);
-
-	int btnId = event.GetId();
 	
 	// akce podle tlacitka
-	switch (btnId)
-	{
+	switch (btnId) {
 	case 10001:
-		looger.AddLog(("ZSA killer started"));
+		looger.AddLog("ZSA killer started");
 		if (killer.killProcess()) {
-			// proces byl uspesne ukoncen
-			looger.AddLog(("Killed successfully"));
+			looger.AddLog("Killed successfully");
 		}
 		else {
-			// proces nebyl nalezen nebo nelze ukoncit
-			looger.AddLog(("Proccess not found"));
+			looger.AddLog("Proccess not found");
 		}
 		break;
+
 	case 10002:
 		looger.AddLog(("ZSA killer stoped"));
 		break;
+
 	default:
 		looger.AddLog(("Button not found!"));
 		break;
