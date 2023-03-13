@@ -5,6 +5,8 @@
 
 cProcessKill::cProcessKill(const std::wstring& processName) : m_processName(processName) {}
 
+cProcessKill::~cProcessKill() {}
+
 bool cProcessKill::killProcess() {
     HANDLE hProcessSnap;
     PROCESSENTRY32 pe32;

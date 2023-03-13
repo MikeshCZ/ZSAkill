@@ -6,8 +6,8 @@
 
 using namespace std;
 
-cLog::cLog(cMain* mainObj) {
-	m_listBox = mainObj->list_log;
+cLog::cLog(wxListBox* list_log) {
+	m_listBox = list_log;
 }
 
 cLog::~cLog() {}

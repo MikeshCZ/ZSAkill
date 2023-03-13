@@ -9,5 +9,5 @@ public:
 	virtual bool OnInit();
 
 private:
-	cMain* win_frame = nullptr;	
+	cMain* win_frame = nullptr;
 };

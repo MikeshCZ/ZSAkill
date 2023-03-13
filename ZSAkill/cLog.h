@@ -1,9 +1,9 @@
 #pragma once
-#include "cMain.h"
+#include "wx/wx.h"
 
 class cLog {
 public:
-	cLog(cMain* mainObj);
+	cLog(wxListBox* list_log);
 	~cLog();
 	void AddLog(std::string message, int level = 0);
 
