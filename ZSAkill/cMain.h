@@ -1,3 +1,5 @@
+// cMain.h
+
 #pragma once
 #include "wx/wx.h"
 #include "cLog.h"
@@ -6,10 +8,11 @@
 class cMain : public wxFrame {
 public:
 	cMain();
-	~cMain();
+	virtual ~cMain();
 
 private:
 	void OnButtonClick(wxCommandEvent& event);
+	void OnKeyDown(wxKeyEvent& event);
 	wxButton* button_start = nullptr;
 	wxButton* button_stop = nullptr;
 	wxListBox* list_log = nullptr;

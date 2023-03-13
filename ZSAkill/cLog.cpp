@@ -1,10 +1,10 @@
+// cLog.cpp
+
 #include "cLog.h"
 #include <chrono>
 #include <sstream>
 #include <ctime>
 #include <iomanip>
-
-using namespace std;
 
 cLog::cLog(wxListBox* list_log) {
 	m_listBox = list_log;
@@ -31,12 +31,23 @@ void cLog::AddLog(string message, int level) {
 	case 2:
 		lvl_Message = " | ERR  | ";
 		break;
+	case 3:
+		lvl_Message = " | DEBG | ";
+		break;
 	default:
 		lvl_Message = " | INFO | ";
 		break;
 	}
 
-	// spojeni do zpravy a zapsani do okna loggeru
-	string log_message = ss.str() + lvl_Message + message;
-	m_listBox->AppendString(log_message);
+	// spojeni do zpravy a zapsani do okna loggeru s oriznutim zpravy na 28 znaku
+	string log_message = ss.str() + lvl_Message + trim_string(message);
+	if (m_listBox->GetCount() == 20) {
+		m_listBox->Delete(19);
+	}
+	m_listBox->Insert(log_message, 0);
+}
+
+string cLog::trim_string(const string& string)
+{
+	return string.substr(0, 28);
 }

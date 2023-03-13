@@ -1,3 +1,5 @@
+// cProcessKill.h
+
 #pragma once
 #include "cMain.h"
 
@@ -10,4 +12,3 @@ public:
 private:
 	std::wstring m_processName;
 };
-
