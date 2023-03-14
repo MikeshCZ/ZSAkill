@@ -13,22 +13,35 @@ cThread::~cThread() {
 
 void* cThread::Entry() {
 	m_running = true;
-	std::wstring processName = L"Notepad.exe";
-	cProcessKill killer(processName);
-	int i = 0;
+	std::wstring processName[4] { L"ZSAService.exe", L"ZSATunnel.exe", L"ZSATrayManager.exe", L"ZSATray.exe" };
+	cProcessKill killer[4] { processName[0], processName[1], processName[2], processName[3] };
+
+	int kill_done = 0;
+	bool killed[4] {};
 
 	while (m_running) {
-		if (killer.killProcess()) {
-			m_logger->AddLog("Process killed successfully");
-			i = 0;
+		// kill all ZSA
+		for (int i = 0; i < 4; i++)	killed[i] = killer[i].killProcess();
+		
+		// write to log if process found and killed
+		if (killed[0]) m_logger->AddLog("ZSAService killed");
+		if (killed[1]) m_logger->AddLog("ZSATunnel killed");
+		if (killed[2]) m_logger->AddLog("ZSATray Man. killed");
+		if (killed[3]) m_logger->AddLog("ZSATray killed");
+
+		if (any_of(begin(killed), end(killed), [](bool val) { return val; })) {
+			// reset counter if some kill is done
+			kill_done = 0;
 		}
 		else {
-			i++;
+			// write to log when there is no process killed for longer time
+			kill_done++;
+
 			// m_logger->AddLog(std::to_string(i), 3); // DEBUG
-			if (i >= 100)
+			if (kill_done >= 100)
 			{
 				m_logger->AddLog("Process not found", 1);
-				i = 0;
+				kill_done = 0;
 			}
 		}
 		wxMilliSleep(250);

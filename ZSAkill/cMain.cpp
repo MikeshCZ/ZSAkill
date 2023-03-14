@@ -18,8 +18,9 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxS
 	button_stop->Bind(wxEVT_BUTTON, &cMain::OnButtonClick, this);
 	button_stop->Disable();
 	
-	// Inicializace logeru
+	// Inicializace
 	m_logger = new cLog(list_log);
+	m_thread = NULL;
 }
 
 cMain::~cMain() {
