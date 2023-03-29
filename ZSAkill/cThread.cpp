@@ -1,19 +1,23 @@
-// cThread.cpp
-
 #include "cThread.h"
 #include "cProcessKill.h"
 
-cThread::cThread(wxListBox* list_box) : wxThread(wxTHREAD_DETACHED), m_running(false) {
+using std::wstring;
+
+cThread::cThread(wxListBox* list_box) 
+	: wxThread(wxTHREAD_DETACHED), m_running(false) 
+{
 	m_logger = new cLog(list_box);
 }
 
-cThread::~cThread() {
-	if (m_logger) delete m_logger;
+cThread::~cThread() 
+{
+	delete m_logger;
 }
 
-void* cThread::Entry() {
+void* cThread::Entry() 
+{
 	m_running = true;
-	std::wstring processName[4] { L"ZSAService.exe", L"ZSATunnel.exe", L"ZSATrayManager.exe", L"ZSATray.exe" };
+	wstring processName[4] { L"ZSAService.exe", L"ZSATunnel.exe", L"ZSATrayManager.exe", L"ZSATray.exe" };
 	cProcessKill killer[4] { processName[0], processName[1], processName[2], processName[3] };
 
 	int kill_done = 0;
@@ -50,6 +54,7 @@ void* cThread::Entry() {
 	return nullptr;
 }
 
-void cThread::Stop() {
+void cThread::Stop() 
+{
 	m_running = false;
 }

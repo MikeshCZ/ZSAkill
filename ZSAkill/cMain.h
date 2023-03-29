@@ -1,11 +1,11 @@
-// cMain.h
-
 #pragma once
 #include "wx/wx.h"
 #include "cLog.h"
 #include "cThread.h"
 
-class cMain : public wxFrame {
+class cMain 
+	: public wxFrame 
+{
 public:
 	cMain();
 	virtual ~cMain();

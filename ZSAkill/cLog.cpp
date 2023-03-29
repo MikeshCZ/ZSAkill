@@ -1,21 +1,21 @@
-// cLog.cpp
-
 #include "cLog.h"
 #include <chrono>
 #include <sstream>
 #include <ctime>
 #include <iomanip>
 
-cLog::cLog(wxListBox* list_log) {
+using chrono::system_clock;
+
+cLog::cLog(wxListBox* list_log)
+{
 	m_listBox = list_log;
 }
 
-cLog::~cLog() {}
-
-void cLog::AddLog(string message, int level) {
+void cLog::AddLog(string message, int level) 
+{
 	// Vycteni casu
-	auto now = chrono::system_clock::now();
-	time_t time_now = chrono::system_clock::to_time_t(now);
+	auto now = system_clock::now();
+	time_t time_now = system_clock::to_time_t(now);
 
 	// Formatovani casu
 	stringstream ss;

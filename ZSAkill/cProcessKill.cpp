@@ -1,5 +1,3 @@
-// cProcessKill.cpp
-
 #include "cProcessKill.h"
 #include <string>
 #include <Windows.h>
@@ -7,9 +5,8 @@
 
 cProcessKill::cProcessKill(const std::wstring& processName) : m_processName(processName) {}
 
-cProcessKill::~cProcessKill() {}
-
-bool cProcessKill::killProcess() {
+bool cProcessKill::killProcess()
+{
     HANDLE hProcessSnap;
     PROCESSENTRY32 pe32;
     hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);

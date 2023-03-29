@@ -1,8 +1,8 @@
-﻿// cMain.cpp
+﻿#include "cMain.h"
 
-#include "cMain.h"
-
-cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 430), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) {	
+cMain::cMain() 
+	: wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 430), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) 
+{	
 	// Nastaveni vlastnosti okna
 	Centre();
 	SetBackgroundColour(wxColour(255, 255, 255));
@@ -23,14 +23,16 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxS
 	m_thread = NULL;
 }
 
-cMain::~cMain() {
-	if (m_logger) delete m_logger;
-	if (button_start) delete button_start;
-	if (button_stop) delete button_stop;
-	if (list_log) delete list_log;
+cMain::~cMain()
+{
+	delete m_logger;
+	delete button_start;
+	delete button_stop;
+	delete list_log;
 }
 
-void cMain::OnButtonClick(wxCommandEvent& event) {
+void cMain::OnButtonClick(wxCommandEvent& event)
+{
 	int btnId = event.GetId();
 	
 	// akce podle tlacitka
@@ -69,8 +71,8 @@ void cMain::OnButtonClick(wxCommandEvent& event) {
 
 	event.Skip();
 }
-
-void cMain::OnKeyDown(wxKeyEvent& event) {
+void cMain::OnKeyDown(wxKeyEvent& event)
+{
 	// ochrana pokud v dobe kdy bezi paralelni thread zmacknu alt+f4
 	if (event.GetKeyCode() == WXK_F4 && event.AltDown()) {
 		m_thread->Stop();
