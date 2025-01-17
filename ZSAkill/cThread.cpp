@@ -17,21 +17,22 @@ cThread::~cThread()
 void* cThread::Entry() 
 {
 	m_running = true;
-	wstring processName[4] { L"ZSAService.exe", L"ZSATunnel.exe", L"ZSATrayManager.exe", L"ZSATray.exe" };
-	cProcessKill killer[4] { processName[0], processName[1], processName[2], processName[3] };
+	wstring processName[5] { L"ZSAService.exe", L"ZSATunnel.exe", L"ZSATrayManager.exe", L"ZSATray.exe", L"ZSAUpm.exe"};
+	cProcessKill killer[5] { processName[0], processName[1], processName[2], processName[3], processName[4]};
 
 	int kill_done = 0;
-	bool killed[4] {};
+	bool killed[5] {};
 
 	while (m_running) {
 		// kill all ZSA
-		for (int i = 0; i < 4; i++)	killed[i] = killer[i].killProcess();
+		for (int i = 0; i < 5; i++)	killed[i] = killer[i].killProcess();
 		
 		// write to log if process found and killed
 		if (killed[0]) m_logger->AddLog("ZSAService killed");
 		if (killed[1]) m_logger->AddLog("ZSATunnel killed");
 		if (killed[2]) m_logger->AddLog("ZSATray Man. killed");
 		if (killed[3]) m_logger->AddLog("ZSATray killed");
+		if (killed[4]) m_logger->AddLog("ZSAUpm killed");
 
 		if (any_of(begin(killed), end(killed), [](bool val) { return val; })) {
 			// reset counter if some kill is done
