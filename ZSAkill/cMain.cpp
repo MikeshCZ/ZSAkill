@@ -1,7 +1,7 @@
 ﻿#include "cMain.h"
 
 cMain::cMain() 
-	: wxFrame(nullptr, wxID_ANY, "ZSA Killer", wxDefaultPosition, wxSize(340, 430), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) 
+	: wxFrame(nullptr, wxID_ANY, "ZSA Killer (v1.2)", wxDefaultPosition, wxSize(340, 430), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX))
 {	
 	// Nastaveni vlastnosti okna
 	Centre();
