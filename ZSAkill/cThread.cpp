@@ -1,10 +1,12 @@
 #include "cThread.h"
 #include "cProcessKill.h"
+#include "cMain.h"
+// #include <string>
 
 using std::wstring;
 
-cThread::cThread(wxListBox* list_box) 
-	: wxThread(wxTHREAD_DETACHED), m_running(false) 
+cThread::cThread(wxListBox* list_box, cMain* main_window) 
+	: wxThread(wxTHREAD_DETACHED), m_running(false), m_main_window(main_window)
 {
 	m_logger = new cLog(list_box);
 }
@@ -49,7 +51,8 @@ void* cThread::Entry()
 				kill_done = 0;
 			}
 		}
-		wxMilliSleep(250);
+		// m_logger->AddLog(to_string(m_main_window->GetSleepTime()));
+		wxMilliSleep(m_main_window->GetSleepTime());
 	}
 
 	return nullptr;

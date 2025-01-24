@@ -10,13 +10,18 @@ cMain::cMain()
 	// Vytvoreni prvku v okne
 	button_start = new wxButton(this, 10001, "Start Killing", wxPoint(10, 10), wxSize(145, 50));
 	button_stop = new wxButton(this, 10002, "Stop Killing", wxPoint(165, 10), wxSize(145, 50));
-	list_log = new wxListBox(this, wxID_ANY, wxPoint(10, 70), wxSize(300, 310));
+	wxStaticText* delay_text = new wxStaticText(this, wxID_ANY, "Delay:", wxPoint(10, 70), wxSize(50, 30));
+	m_slider = new wxSlider(this, wxID_ANY, 250, 0, 1000, wxPoint(50, 67), wxSize(230, 30));
+	m_slider_value = new wxStaticText(this, wxID_ANY, "250", wxPoint(280, 70), wxSize(50, 30));
+	list_log = new wxListBox(this, wxID_ANY, wxPoint(10, 100), wxSize(300, 280));
+	
 
 	// Binding prvku
 	this->Bind(wxEVT_KEY_DOWN, &cMain::OnKeyDown, this);
 	button_start->Bind(wxEVT_BUTTON, &cMain::OnButtonClick, this);
 	button_stop->Bind(wxEVT_BUTTON, &cMain::OnButtonClick, this);
 	button_stop->Disable();
+	m_slider->Bind(wxEVT_SLIDER, &cMain::OnSliderChange, this);
 	
 	// Inicializace
 	m_logger = new cLog(list_log);
@@ -29,6 +34,13 @@ cMain::~cMain()
 	delete button_start;
 	delete button_stop;
 	delete list_log;
+	delete m_slider;
+	delete m_slider_value;
+}
+
+int cMain::GetSleepTime() const
+{
+	return m_slider->GetValue();
 }
 
 void cMain::OnButtonClick(wxCommandEvent& event)
@@ -39,7 +51,7 @@ void cMain::OnButtonClick(wxCommandEvent& event)
 	switch (btnId) {
 	case 10001:
 		// kliknuti na tlacitko START
-		m_thread = new cThread(list_log);
+        m_thread = new cThread(list_log, this);
 		m_logger->AddLog("---- ZSA Killer started ----");
 		
 		button_start->Disable();
@@ -79,4 +91,11 @@ void cMain::OnKeyDown(wxKeyEvent& event)
 		wxMilliSleep(500);
 		Destroy();
 	}
+}
+
+void cMain::OnSliderChange(wxCommandEvent& event)
+{
+	int value = m_slider->GetValue();
+	m_slider_value->SetLabel(std::to_string(value));
+	event.Skip();
 }
