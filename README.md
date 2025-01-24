@@ -13,7 +13,3 @@ You need to run this file as administrator to give the rights to process kill co
 
 ### How to stop it?
 To stop this batch script run simply click on stop button and close the app window. Zscaler services usually restart automatically or you can start it manually again.
-
-## Release
-### v.1.0
-- First release of the app
