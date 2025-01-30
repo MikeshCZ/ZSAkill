@@ -1,3 +1,5 @@
+<a href="https://www.buymeacoffee.com/michalsara" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 # ZSAkill
 A simple utility for killing the ZSA firewall and its services. Must run as administrator.
 
@@ -13,3 +15,5 @@ You need to run this file as administrator to give the rights to process kill co
 
 ### How to stop it?
 To stop this batch script run simply click on stop button and close the app window. Zscaler services usually restart automatically or you can start it manually again.
+
+## If you like this repository you can **[buy me a coffee](https://www.buymeacoffee.com/michalsara)**. Thank You!
